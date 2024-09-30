@@ -1,3 +1,5 @@
+"use client"
+import { useRouter } from "next/navigation"
 import Avatar from "./Avatar"
 
 interface AppbarProps {
@@ -7,6 +9,7 @@ interface AppbarProps {
 export default function Appbar({
   name
 }: AppbarProps){
+    const router = useRouter()
     return (
       <div className="flex flex-col justify-center">
         <div className="flex justify-between items-center bg-gray-400 p-2">
@@ -15,7 +18,7 @@ export default function Appbar({
           </div>
           <div className="flex justify-between"> 
             <div className="mx-3">
-                <button className="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition duration-300">
+                <button onClick={() => router.push('/signup')} className="bg-blue-500 text-white px-3 py-1 rounded-lg shadow-md hover:bg-blue-600 transition duration-300">
                   subscribe
                 </button>
             </div>

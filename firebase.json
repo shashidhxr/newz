@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "newz0",
+    "public": "newz",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
