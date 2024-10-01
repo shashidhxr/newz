@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { auth, googleProvider } from "@/config/firebase"; // Import Firebase auth
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 
 export default function Auth({ type }: { type: "signup" | "signin" }) {
   const [name, setName] = useState("");
@@ -138,14 +139,14 @@ export default function Auth({ type }: { type: "signup" | "signin" }) {
             <button
                 onClick={handleGoogleSignIn}
                 className="bg-red-600 text-white py-2 px-4 rounded-md shadow-md hover:bg-red-500 transition-all duration-300">
-                Sign in with Google
+                Signin with Google
             </button>
             </div>
             <div className="flex justify-center ml-1">
             <button
                 onClick={handleGoogleSignIn}
                 className="bg-gray-800 text-white py-2 px-4 rounded-md shadow-md hover:bg-gray-700 transition-all duration-300">
-                Sign in with Github
+                Signin with Github
             </button>
             </div>
         </div>
