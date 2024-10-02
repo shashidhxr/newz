@@ -6,6 +6,8 @@ import { useRouter } from "next/navigation";
 import { auth, googleProvider } from "@/config/firebase"; // Import Firebase auth
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { signInWithPopup } from "firebase/auth";
+import { FirebaseError } from "firebase/app";
+
 
 export default function Auth({ type }: { type: "signup" | "signin" }) {
   const [name, setName] = useState("");
@@ -18,26 +20,31 @@ export default function Auth({ type }: { type: "signup" | "signin" }) {
     e.preventDefault();
     setError("");
 
-    try {
-      if (type === "signup") {
-        // Handle sign-up
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-        console.log("User signed up:", user);
-        // Optionally, add additional user data to Firestore here
+  
+try {
+  if (type === "signup") {
+    // Handle sign-up
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+    console.log("User signed up:", user);
 
-        router.push("/welcome"); // Redirect after sign-up
-      } else {
-        // Handle sign-in
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-        console.log("User signed in:", user);
+    router.push("/welcome"); // Redirect after sign-up
+  } else {
+    // Handle sign-in
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+    console.log("User signed in:", user);
 
-        router.push("/news"); // Redirect after sign-in
-      }
-    } catch (error: any) {
-      setError(error.message); // Handle errors
-    }
+    router.push("/news"); // Redirect after sign-in
+  }
+} catch (error) {
+  if (error instanceof FirebaseError) {
+    setError(error.message); // Handle Firebase errors
+  } else {
+    setError("An unexpected error occurred.");
+  }
+}
+
   };
 
   const handleGoogleSignIn = async () => {
