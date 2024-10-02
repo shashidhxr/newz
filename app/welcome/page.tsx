@@ -36,7 +36,7 @@ export default function Welcome() {
 
                 {/* Button to navigate back to homepage */}
                 <div className="flex justify-center items-center">
-                    <button onClick={() => router.push('/')} className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 px-10 rounded-full shadow-lg hover:from-blue-600 hover:to-indigo-700 transform hover:scale-105 transition duration-300 ease-in-out">
+                    <button onClick={() => router.push('/news')} className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 px-10 rounded-full shadow-lg hover:from-blue-600 hover:to-indigo-700 transform hover:scale-105 transition duration-300 ease-in-out">
                         Go to Newz without subscribing
                     </button>
                 </div>

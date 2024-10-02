@@ -33,7 +33,7 @@ export default function Auth({ type }: { type: "signup" | "signin" }) {
         const user = userCredential.user;
         console.log("User signed in:", user);
 
-        router.push("/dashboard"); // Redirect after sign-in
+        router.push("/news"); // Redirect after sign-in
       }
     } catch (error: any) {
       setError(error.message); // Handle errors
@@ -46,7 +46,7 @@ export default function Auth({ type }: { type: "signup" | "signin" }) {
       const user = result.user;
       console.log("Google sign-in success:", user);
       // Redirect after Google sign-in
-      router.push("/dashboard");
+      router.push("/news");
     } catch (error) {
       console.error("Error with Google sign-in:", error);
       setError("Failed to sign in with Google.");
